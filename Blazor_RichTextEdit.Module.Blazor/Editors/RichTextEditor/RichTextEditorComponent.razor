@@ -1,0 +1,17 @@
+﻿@using Blazor_RichTextEdit.Module.Blazor.Components.Models
+@using DevExpress.Blazor.RichEdit;
+@using System.Text;
+
+<DxRichEdit Id="richEdit" DocumentContent="@Model.Value" DocumentContentChanged="OnDocumentContentChanged" CssClass="w-100 ch-480" />
+
+@code {
+    [Parameter]
+    public RichTextEditorComponentModel Model { get; set; }
+
+    private void OnDocumentContentChanged(byte[] content)
+    {
+        Model.SetValueFromUI(content);
+    }
+
+    public static RenderFragment Create(RichTextEditorComponentModel model) =>@<RichTextEditorComponent Model=model />;
+}
